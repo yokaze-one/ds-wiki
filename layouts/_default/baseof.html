@@ -7,7 +7,7 @@
     
     {{ $css := resources.Get "css/custom.css" }}
     {{ $style := $css }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}{{ $style.RelPermalink }}">
 </head>
 <body>
     <div id="wrapper">
