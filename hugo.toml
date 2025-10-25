@@ -32,5 +32,5 @@ title = "DS wiki"
 # ライブリロード機能を無効化
 # これにより、Netlifyでのビルド時にHTMLからlivereload.jsへの参照が削除されます。
 disableLiveReload = true
-relativeURLs = true
+relativeURLs = false
 canonifyURLs = true

@@ -26,11 +26,13 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.128.0' # Extended版
+          hugo-version: '0.128.0'
           extended: true
 
-      - name: Build Hugo Site
-        run: hugo --minify
+      # ビルド実行時にbaseURLを明示的に指定して、hugo.tomlの設定を強制的に適用させる
+      - name: Build Hugo Site (Forcing baseURL)
+        # GitHub PagesのURLをそのまま渡します。これにより、baseURLが正しく上書きされます。
+        run: hugo --minify --baseURL "https://yokaze-one.github.io/ds-wiki/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
