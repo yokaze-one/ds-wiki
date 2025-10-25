@@ -1,0 +1,36 @@
+baseURL = "https://yokaze-one.github.io/ds-wiki/"
+languageCode = "ja-jp"
+title = "DS wiki"
+
+[pagination]
+  pagerSize = 10
+
+# 検索インデックス(index.json)を出力する設定
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[mediaTypes]
+  [mediaTypes."application/json"]
+    suffixes = ["json"]
+
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType = "application/json"
+    baseName = "index"
+    isPlainText = true
+    notATemplate = false
+
+[markup.goldmark.renderer]
+  unsafe = true # Markdown内でHTMLタグを許可する
+
+[page.params]
+  disableHugoGeneratorInject = true
+
+[cache.render]
+  enable = false
+
+# ライブリロード機能を無効化
+# これにより、Netlifyでのビルド時にHTMLからlivereload.jsへの参照が削除されます。
+disableLiveReload = true
+relativeURLs = true
+canonifyURLs = true

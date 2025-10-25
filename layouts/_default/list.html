@@ -1,0 +1,19 @@
+{{ define "title" }}
+    {{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<article class="wiki-article">
+    <h1>{{ .Title }}</h1>
+    <hr>
+    {{ .Content }}
+    
+    <ul class="section-list">
+    {{ range .Pages }}
+        {{ if ne .Kind "section" }} 
+            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+    {{ end }}
+    </ul>
+</article>
+{{ end }}
