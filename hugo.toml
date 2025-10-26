@@ -1,5 +1,5 @@
 #baseURL = 'http://example.org'
-baseURL = 'https://yokaze-one.github.io/ds-wiki-git/'
+baseURL = 'https://yokaze-one.github.io/ds-wiki/'
 
 languageCode = 'ja-jp'
 title = 'DS-Wiki'
