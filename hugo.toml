@@ -1,36 +1,54 @@
-baseURL = "https://yokaze-one.github.io/ds-wiki/"
-languageCode = "ja-jp"
-title = "DS wiki"
+#baseURL = 'http://example.org'
+baseURL = 'https://yokaze-one.github.io/ds-wiki-git/'
 
-[pagination]
-  pagerSize = 10
+languageCode = 'ja-jp'
+title = 'DS-Wiki'
 
-# 検索インデックス(index.json)を出力する設定
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
+# ==============================================================================
+# URLとパスの処理設定 (相対パスを強制)
+# ==============================================================================
 
-[mediaTypes]
-  [mediaTypes."application/json"]
-    suffixes = ["json"]
+# 2. 【最重要】URLを絶対パスに変換する動作（canonify）を無効にする
+canonifyURLs = false 
 
-[outputFormats]
-  [outputFormats.JSON]
-    mediaType = "application/json"
-    baseName = "index"
-    isPlainText = true
-    notATemplate = false
+# 3. 相対URLの生成を有効にする
+relativeURLs = true
+
+# ==============================================================================
+# ビルドとデプロイの設定
+# ==============================================================================
+
+# 4. ビルド結果の出力先ディレクトリを public に指定
+publishDir = 'public'
+
+# 開発時のライブリロードを無効にする（デプロイに影響なし）
+disableLiveReload = true
+
+# ==============================================================================
+# Markdown処理の設定
+# ==============================================================================
 
 [markup.goldmark.renderer]
-  unsafe = true # Markdown内でHTMLタグを許可する
+# 5. Markdownファイル内で生のHTML（scriptタグなど）の使用を許可
+unsafe = true
 
-[page.params]
-  disableHugoGeneratorInject = true
+# ==============================================================================
+# 検索インデックスの出力設定
+# ==============================================================================
 
-[cache.render]
-  enable = false
+# 6. ホームページ（/）でHTML、RSS、JSONを出力
+[outputs]
+home = ['HTML', 'RSS', 'JSON'] 
 
-# ライブリロード機能を無効化
-# これにより、Netlifyでのビルド時にHTMLからlivereload.jsへの参照が削除されます。
-disableLiveReload = true
-relativeURLs = false
-canonifyURLs = true
+[mediaTypes]
+# JSONファイルのMIMEタイプを定義
+[mediaTypes."application/json"]
+suffixes = ['json']
+
+[outputFormats]
+# JSONフォーマットを出力する際の設定
+[outputFormats.JSON]
+mediaType = 'application/json'
+baseName = 'index' # ファイル名を index.json とする
+isPlainText = true
+notATemplate = false

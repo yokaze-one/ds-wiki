@@ -1,13 +1,8 @@
-[
-  {{ range $index, $page := .Site.AllPages }}
-    {{ if and (ne $page.Kind "taxonomy") (ne $page.Kind "term") (ne $page.Kind "404") (eq $page.Kind "page") }}
-    {
-      "title": {{ $page.Title | jsonify }},
-      "permalink": {{ $page.Permalink | jsonify }},
-      "section": {{ $page.Section | jsonify }},
-      "content": {{ $page.Plain | jsonify }}
-    }
-    {{ if lt $index (sub (len .Site.AllPages) 1) }},{{ end }}
-    {{ end }}
-  {{ end }}
-  ]
+{{- $.Scratch.Add "index" slice -}}
+{{- range .Site.AllPages -}}
+  {{- if and (ne .Kind "taxonomy") (ne .Kind "term") (ne .Kind "404") (ne .Kind "page") -}}
+    {{- else -}}
+      {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "section" .Section "content" .Plain) -}}
+  {{- end -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}
